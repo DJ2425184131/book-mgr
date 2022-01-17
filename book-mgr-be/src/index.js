@@ -58,12 +58,12 @@ app.use(async (context,next)=>{
         return ;
     }
 
-    // context.body='404';
-    // console.log(1);
+    context.body='404';
+    console.log(1);
 
-    // await next();
-    // console.log(3);
-    // context.status=404;
+    await next();
+    console.log(3);
+    context.status=404;
 
     console.log(1);
     await next();
@@ -83,9 +83,13 @@ app.use(async (context,next)=>{
     console.log(6);
     // context.body="找不到资源"
 })
+
+app.use((ctx)=>{
+    console.log(ctx.URL)
+})
  
 // 开启一个http服务 接收http请求进行处理并做出响应 
 app.listen(3000,()=>{
     console.log('启动成功');
 });
-console.log('123456'); 
+// console.log('123456'); 
