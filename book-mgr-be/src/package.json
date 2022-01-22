@@ -1,0 +1,25 @@
+{
+  "name": "book-mgr-be",
+  "version": "1.0.0",
+  "description": "毕设项目的服务端",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "毕设"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "koa-body": "^4.2.0 "
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

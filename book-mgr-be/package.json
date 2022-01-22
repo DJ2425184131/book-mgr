@@ -1,0 +1,21 @@
+{
+  "name": "book-mgr-be",
+  "version": "1.0.0",
+  "description": "毕设项目的服务端",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "董静",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^10.1.1",
+    "koa": "^2.13.4",
+    "mongoose": "^6.1.4"
+  },
+  "devDependencies": {
+    "koa-cors": "^0.0.16",
+    "koa2-cors": "^2.0.6"
+  }
+}
