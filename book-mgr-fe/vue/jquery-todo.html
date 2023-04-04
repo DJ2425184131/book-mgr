@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue-todo</title>
+    <style>
+        .done{
+            text-decoration: line-through;
+            color: antiquewhite;
+            
+        }
+        li{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <p>列表：</p>
+    <input type="text" class="input">
+    <ul></ul>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.js"></script>
+ 
+    <script>
+        var $input=$('.input');
+        var $ul=$('ul');
+        $input.keyup(function(e){
+            var keyCode=e.keyCode;
+            if (keyCode!==13) return;
+            $ul.append('<li>'+$input.val()+'</li>');
+            $input.val('');
+        });
+        $ul.on('click','li',function(){
+            $(this).toggleClass('done');
+        });
+        $ul.on('contextmenu','li',function(e){
+            e.preventDefault();
+            $(this).remove;
+        });
+    </script>
+   
+</body>
+</html>

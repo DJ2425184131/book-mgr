@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue3-todo</title>
+    <style>
+        .done{
+            text-decoration: line-through;
+            color: antiquewhite;
+            
+        }
+        li{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input 
+            type="text" 
+            class="input"
+            v-model="inputValue"
+            @keyup.enter="add"
+        >
+
+    
+
+        <p>列表：</p>
+
+        <ul>
+            <li
+                v-for="(item,index) in list" 
+                @click="item.done=!item.done"
+                :class="{
+                    done:item.done,
+                }"
+                @contextmenu="remove(index,$event)"
+            >
+                {{item.text}}
+            </li>
+        </ul> 
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.47/vue.global.js"></script>
+
+    <script>
+        const ref=Vue.ref;
+
+        const Todo={
+            setup(){
+                const list=ref([]);
+                const inputValue=ref('');
+
+                const add=()=>{
+                    list.value.push({
+                        text:inputValue.value,
+                        done:false,
+                    });
+                    inputValue.value='';
+                };
+            
+                const remove=(index,e)=>{
+                    e.preventDefault();
+                    
+                    list.value.splice(index,1);
+                };
+
+                return {
+                    add,
+                    remove,
+                    list,
+                    inputValue,
+                };
+            },
+        };
+        
+        Vue.createApp(Todo).mount('#app');
+    </script>
+</body>
+</html>

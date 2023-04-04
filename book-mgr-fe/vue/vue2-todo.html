@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-todo</title>
+    <style>
+        .done{
+            text-decoration: line-through;
+            color: antiquewhite;
+            
+        }
+        li{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input 
+            type="text" 
+            class="input"
+            v-model="inputVal"
+            @keyup.enter="add"
+        >
+
+    
+
+        <p>列表：</p>
+
+        <ul>
+            <li
+                v-for="(item,index) in list" 
+                @click="item.done=!item.done"
+                <!-- 传递对象class -->
+                :class="{
+                    done:item.done,
+                }"
+                @contextmenu="remove(index,$event)"
+            >
+                {{item.text}}
+            </li>
+        </ul> 
+    </div>
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.2.47/vue.global.js"></script>
+
+    <script>
+        const Todo={
+            // 对象的方法--ES6
+            data(){
+                return {
+                    list: [{
+                        text:'今天打豆豆',
+                        done:false,
+                    }],
+                    inputVal: '',
+                };             
+            },
+            methods: {
+                add(){
+                    const val=this.inputVal;
+
+                    this.list.push({
+                        text:val,
+                        done:false,
+                    });
+
+                    this.inputVal='';
+                },
+            remove(index,e){
+                e.preventDefault();
+                this.list.splice(index,1);
+            },
+        },
+
+        mounted() {
+            setTimeout( ()=> {
+                this.inputVal='8888888';
+            },2000);
+            },
+        };
+        
+        Vue.createApp(Todo).mount('#app');
+    </script>
+</body>
+</html>
